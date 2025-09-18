@@ -6,13 +6,18 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 import java.awt.Color;
+import java.awt.Cursor;
+
 import javax.swing.JTextField;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import java.net.URL;
 
 public class Vista {
 
@@ -37,7 +42,13 @@ public class Vista {
 		txtBusqueda.setColumns(10);
 
 		btnBuscar = new JButton("Buscar");
+		btnBuscar.setBackground(new Color(0, 153, 0));
 		btnBuscar.setBounds(404, 398, 89, 23);
+		btnBuscar.setBackground(new Color(0x1DB954)); // color Spotify green (#1DB954)
+		btnBuscar.setForeground(Color.WHITE);
+		btnBuscar.setBorder(BorderFactory.createEmptyBorder(8, 20, 8, 20));
+		btnBuscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
 		frame.getContentPane().add(btnBuscar);
 
 		lblError = new JLabel("");
@@ -63,17 +74,17 @@ public class Vista {
 
 		lblArtista = new JLabel("Artista");
 		lblArtista.setForeground(new Color(255, 255, 255));
-		lblArtista.setBounds(252, 319, 46, 14);
+		lblArtista.setBounds(252, 319, 205, 14);
 		frame.getContentPane().add(lblArtista);
 
 		lblCancion = new JLabel("Cancion");
 		lblCancion.setForeground(new Color(255, 255, 255));
-		lblCancion.setBounds(252, 298, 46, 14);
+		lblCancion.setBounds(252, 298, 205, 14);
 		frame.getContentPane().add(lblCancion);
 
 		lblImagen = new JLabel("Imagen");
 		lblImagen.setForeground(new Color(255, 255, 255));
-		lblImagen.setBounds(252, 199, 46, 14);
+		lblImagen.setBounds(252, 107, 205, 191);
 		frame.getContentPane().add(lblImagen);
 
 		frame.setVisible(true);
@@ -102,4 +113,15 @@ public class Vista {
 	public JLabel getLblError() {
 		return lblError;
 	}
+	
+	public void mostrarImagenArtista(String urlImagen) {
+	    try {
+	        ImageIcon icono = new ImageIcon(new URL(urlImagen));
+	        Image imagenEscalada = icono.getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+	        lblImagen.setIcon(new ImageIcon(imagenEscalada));
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+
 }

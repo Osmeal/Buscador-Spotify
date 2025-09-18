@@ -18,7 +18,7 @@ public class Controlador {
 	}
 
 	public void Control() {
-		// boton nueva partida
+		// boton buscar
 		actionListener_btnBuscar = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -27,7 +27,17 @@ public class Controlador {
 					vista.getLblError().setText("Necesitas poner texto en el buscador");
 				} else {
 					vista.getLblError().setText("");
-					vista.getLblArtista().setText(vista.getTxtBusqueda().getText());
+					
+					String artista = vista.getTxtBusqueda().getText();
+					String json = Modelo.buscarArtista(artista);
+					String urlImagen = Modelo.obtenerImagen(json);
+					String genero = Modelo.obtenerGenero(json);
+					String seguidores = Modelo.obtenerSeguidores(json);
+					
+					vista.getLblArtista().setText(artista);
+					vista.mostrarImagenArtista(urlImagen);
+					vista.getLblCancion().setText(seguidores);
+
 				}
 			}
 		};
