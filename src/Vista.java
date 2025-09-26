@@ -18,15 +18,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import java.net.URL;
+import java.awt.Font;
+import javax.swing.JTabbedPane;
 
 public class Vista {
 
 	private JFrame frame;
 	private JTextField txtBusqueda;
 	private JButton btnBuscar;
-	private JLabel lblArtista;
-	private JLabel lblCancion;
+	private JLabel lblgGenero;
+	private JLabel lblNombre;
 	private JLabel lblImagen;
+	private JLabel lblPopularidad;
 	private JLabel lblError;
 
 	public Vista() throws IOException {
@@ -37,13 +40,13 @@ public class Vista {
 		frame.getContentPane().setLayout(null);
 
 		txtBusqueda = new JTextField();
-		txtBusqueda.setBounds(201, 399, 180, 20);
+		txtBusqueda.setBounds(268, 393, 180, 20);
 		frame.getContentPane().add(txtBusqueda);
 		txtBusqueda.setColumns(10);
 
 		btnBuscar = new JButton("Buscar");
 		btnBuscar.setBackground(new Color(0, 153, 0));
-		btnBuscar.setBounds(404, 398, 89, 23);
+		btnBuscar.setBounds(471, 392, 89, 23);
 		btnBuscar.setBackground(new Color(0x1DB954)); // color Spotify green (#1DB954)
 		btnBuscar.setForeground(Color.WHITE);
 		btnBuscar.setBorder(BorderFactory.createEmptyBorder(8, 20, 8, 20));
@@ -69,23 +72,31 @@ public class Vista {
 		ImageIcon fondo = new ImageIcon(imagenEscalada);
 
 		JLabel lblLogo = new JLabel(fondo);
-		lblLogo.setBounds(252, 11, 205, 99);
+		lblLogo.setBounds(10, 11, 205, 99);
 		frame.getContentPane().add(lblLogo);
 
-		lblArtista = new JLabel("Artista");
-		lblArtista.setForeground(new Color(255, 255, 255));
-		lblArtista.setBounds(252, 319, 205, 14);
-		frame.getContentPane().add(lblArtista);
+		lblgGenero = new JLabel("Género");
+		lblgGenero.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblgGenero.setForeground(new Color(255, 255, 255));
+		lblgGenero.setBounds(268, 321, 205, 14);
+		frame.getContentPane().add(lblgGenero);
 
-		lblCancion = new JLabel("Cancion");
-		lblCancion.setForeground(new Color(255, 255, 255));
-		lblCancion.setBounds(252, 298, 205, 14);
-		frame.getContentPane().add(lblCancion);
+		lblNombre = new JLabel("Nombre");
+		lblNombre.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		lblNombre.setForeground(new Color(255, 255, 255));
+		lblNombre.setBounds(268, 285, 205, 14);
+		frame.getContentPane().add(lblNombre);
 
-		lblImagen = new JLabel("Imagen");
+		lblImagen = new JLabel("");
 		lblImagen.setForeground(new Color(255, 255, 255));
-		lblImagen.setBounds(252, 107, 205, 191);
+		lblImagen.setBounds(268, 63, 205, 191);
 		frame.getContentPane().add(lblImagen);
+		
+		lblPopularidad = new JLabel("Seguidores");
+		lblPopularidad.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblPopularidad.setForeground(Color.WHITE);
+		lblPopularidad.setBounds(268, 353, 205, 14);
+		frame.getContentPane().add(lblPopularidad);
 
 		frame.setVisible(true);
 	}
@@ -98,14 +109,18 @@ public class Vista {
 		return txtBusqueda;
 	}
 
-	public JLabel getLblArtista() {
-		return lblArtista;
+	public JLabel getLblGenero() {
+		return lblgGenero;
 	}
 
-	public JLabel getLblCancion() {
-		return lblCancion;
+	public JLabel getLblNombre() {
+		return lblNombre;
 	}
 
+	public JLabel getLblPopularidad() {
+		return lblPopularidad;
+	}
+	
 	public JLabel getLblImagen() {
 		return lblImagen;
 	}
@@ -123,5 +138,4 @@ public class Vista {
 	        e.printStackTrace();
 	    }
 	}
-
 }
