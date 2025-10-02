@@ -73,6 +73,9 @@ public class Controlador {
 						vista.getLblNombreCancion().setText(track.name);
 						vista.getLblGrupo().setText(track.artists.get(0).name);
 
+						vista.mostrarReproductor(track.id);
+
+						
 						if (track.album != null && track.album.images != null && !track.album.images.isEmpty()) {
 							vista.mostrarImagenCancion(track.album.images.get(0).url);
 						} else {

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class RespuestaSpotify {
 	public Artists artists;
-	public Tracks tracks; // 👈 añadir para las canciones
+	public Tracks tracks;
 
 	public static class Artists {
 		public List<Artist> items;
@@ -30,6 +30,7 @@ public class RespuestaSpotify {
 	}
 
 	public static class Track {
+		public String id;
 		public String name;
 		public List<Artist> artists;
 		public Album album;

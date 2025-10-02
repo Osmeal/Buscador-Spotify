@@ -23,6 +23,12 @@ import java.awt.Font;
 import javax.swing.JTabbedPane;
 import javax.swing.Icon;
 
+import javafx.embed.swing.JFXPanel; // puente entre Swing y JavaFX
+import javafx.application.Platform;
+import javafx.scene.Scene;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+
 public class Vista {
 
 	private JFrame frame;
@@ -39,6 +45,8 @@ public class Vista {
 	private JLabel lblSeguidores;
 	private JLabel lblErrorArtista;
 	private JLabel lblErrorCancion;
+
+	private JFXPanel jfxPanel;
 
 	public Vista() throws IOException {
 		frame = new JFrame();
@@ -163,6 +171,11 @@ public class Vista {
 		lblErrorArtista.setBounds(211, 374, 292, 14);
 		panelArtista.add(lblErrorArtista);
 
+		// Reproductor (iframe)
+		jfxPanel = new JFXPanel();
+		jfxPanel.setBounds(166, 170, 400, 150);
+		panelCancion.add(jfxPanel);
+
 		frame.setVisible(true);
 	}
 
@@ -237,4 +250,16 @@ public class Vista {
 			e.printStackTrace();
 		}
 	}
+
+	public void mostrarReproductor(String trackId) {
+		Platform.runLater(() -> {
+			WebView webView = new WebView();
+			WebEngine engine = webView.getEngine();
+			String url = "https://open.spotify.com/embed/track/" + trackId + "?utm_source=generator";
+			engine.load(url);
+			Scene scene = new Scene(webView, 500, 200);
+			jfxPanel.setScene(scene);
+		});
+	}
+
 }
